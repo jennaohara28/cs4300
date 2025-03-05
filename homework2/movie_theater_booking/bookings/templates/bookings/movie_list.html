@@ -1,0 +1,22 @@
+{% extends 'bookings/base.html' %}
+
+{% block title %}Movie List{% endblock %}
+
+{% block content %}
+    <div class="container mt-4">
+        <h2 class="mb-3">Available Movies</h2>
+        <ul class="list-group">
+            {% for movie in movies %}
+                <li class="list-group-item">
+                    <h5>{{ movie.title }}</h5>
+                    <p>{{ movie.description }}</p>
+                    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+                    <p><strong>Duration:</strong> {{ movie.duration }} minutes</p>
+                    <a class="btn btn-primary">
+                        Book Now
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

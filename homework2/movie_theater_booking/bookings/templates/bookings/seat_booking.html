@@ -1,0 +1,25 @@
+{% extends 'bookings/base.html' %}
+
+{% block title %}Book Seats{% endblock %}
+
+{% block content %}
+<h2>Available Seats for {{ movie.title }}</h2>
+
+{% if available_seats %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="list-group">
+            {% for seat in available_seats %}
+                <div class="list-group-item">
+                    <h5>Seat: {{ seat.seat_number }}</h5>
+                    <p>Booking Status: {{ seat.booking_status }}</p>
+                    <button type="submit" name="seat_id" value="{{ seat.id }}" class="btn btn-primary">Book Seat</button>
+                </div>
+            {% endfor %}
+        </div>
+    </form>
+{% else %}
+    <p>No available seats for this movie.</p>
+{% endif %}
+
+{% endblock %}
